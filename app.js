@@ -13,14 +13,18 @@ const fileStorageEngine = multer.diskStorage({
 }) 
 
 const upload = multer({storage : fileStorageEngine})
-
+// single file upload 
 app.post('/single',upload.single('image'),(req,res)=>{
     console.log(req.file)
     res.send('single file upload success')
 })
 
+// multiple file upload
 
-
+app.post('/multiple',upload.any('image'),(req,res)=>{
+    console.log(req.file)
+    res.send('single file upload success')
+})
 
 
 app.listen(port, () => {
